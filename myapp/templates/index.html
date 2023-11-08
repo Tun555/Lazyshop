@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>First Web page</title>
+{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">Populations</h2>
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+          <strong>{{message}}</strong>
+        </div>
+      {% endfor %}
+    {% endif %}
+    <!-- {{all_person}} -->
+    <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Data adding date</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for person in all_person %}
+            <tr>
+                <th scope="row">{{person.id}}</th>
+                <td>{{person.name}}</td>
+                <td>{{person.age}}</td>
+                <td>{{person.date}}</td>
+                <td><a href="edit/{{person.id}}" class="btn btn-warning">edit</a></td>
+                <td>
+                  <a href="delete/{{person.id}}" class="btn btn-danger" onclick = "return confirm('Do you want to delete {{person.name}}')">delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+{% endblock %}
